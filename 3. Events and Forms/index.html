@@ -29,7 +29,7 @@
 
 <!-- Todo 3.2a Create a button with the text "Call inline event handler". Add an inline event handler that logs "From inline event hanlder" when the button is clicked -->
 <!-- Relevant Link: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#inline_event_handlers_%E2%80%94_dont_use_these See other event listener mechanisms section -->
-<button>Call inline event handler</button>
+<button onclick="alert('From inline event handler')">Call inline event handler</button>
 
 <!-- Todo 3.3a Create a button with the text "Call addEventListener" -->
 <button>Call addEventListener</button>
@@ -41,7 +41,12 @@
     <div class="grandparent">
         <div class="parent">
             <div class="child">
-    
+                <form>
+                    <label for="first-name"> First Name </label> <br> 
+                    <input type="text" id="first-name"> <br>
+                    <label for="last-name"> Last Name </label> <br> 
+                    <input type="text" id="last-name">
+                </form>
             </div>
         </div>
     </div>
