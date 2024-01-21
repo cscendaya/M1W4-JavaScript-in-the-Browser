@@ -91,17 +91,18 @@
         // Relevant Link: https://stackoverflow.com/questions/11563638/how-do-i-get-the-value-of-text-input-field-using-javascript
         
         document.getElementById('formContent').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevents the default form submission behavior
+        event.preventDefault(); 
 
-        // Get the values from the form
         const firstName = document.getElementById('first-name').value;
         const lastName = document.getElementById('last-name').value;
-
-        // Append the contents to the results array
         results.push({ firstName, lastName });
         //results[results.length] = { firstName, lastName };
-
-        // Display the content of results
+        function displayResults() {
+            para.textContent = "";
+            results.forEach((result, index) => {
+                para.textContent += `Result ${index + 1}: First Name - ${result.firstName}, Last Name - ${result.lastName}\n`;
+            });
+        }
         console.log(firstName);
         console.log(lastName);
         console.log('Results:', results);
@@ -109,19 +110,19 @@
     });
         // Todo 3.5 add event listenders for the grandparent, parent, and child divs. When clicked, the grandparent, parent, and child should log "Grandparent", "Parent", and "Child" respectively
         // Relevant Link: https://youtu.be/XF1_MlZ5l6M?si=QrNjKXg-xXV6yghW @ 4:00 of the video
-        const grandparent = document.querySelector(".grandparent")
-        const parent = document.querySelector(".parent")
-        const child = document.querySelector(".child")
+        // const grandparent = document.querySelector(".grandparent")
+        // const parent = document.querySelector(".parent")
+        // const child = document.querySelector(".child")
 
-        grandparent.addEventListener("click", e =>{
-            console.log("Grandparent")
-        })
-        parent.addEventListener("click", e =>{
-            console.log("Parent")
-        })
-        child.addEventListener("click", e =>{
-            console.log("child")
-        })
+        // grandparent.addEventListener("click", e =>{
+        //     console.log("Grandparent")
+        // })
+        // parent.addEventListener("click", e =>{
+        //     console.log("Parent")
+        // })
+        // child.addEventListener("click", e =>{
+        //     console.log("child")
+        // })
 
         // Checkpoint 3.2 What is event bubbling? How was it shown in Todo 3.5?
         // Answer: 
@@ -134,15 +135,12 @@
         // console.log("Grandparent");
         // });
 
-        // // Change the order of event listener registration to make "grandparent" displayed first
         // child.addEventListener("click", e => {
         //     console.log("Child");
         // });
 
-        // // Bonus Todo 3.7 Change your code to ensure "parent" is never displayed
-        // // Remove the event listener for the "parent" element
         // parent.addEventListener("click", e => {
-        //     e.stopPropagation(); // Prevent the event from reaching the parent
+        //     e.stopPropagation(); 
         // });
 
     </script>
