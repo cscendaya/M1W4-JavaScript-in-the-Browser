@@ -29,10 +29,18 @@
 
 <!-- Todo 3.2a Create a button with the text "Call inline event handler". Add an inline event handler that logs "From inline event hanlder" when the button is clicked -->
 <!-- Relevant Link: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#inline_event_handlers_%E2%80%94_dont_use_these See other event listener mechanisms section -->
-<button onclick="alert('From inline event handler')">Call inline event handler</button>
+
+<!-- <button onclick="alert('From inline event handler')">Call inline event handler</button> -->
+<button onclick="console.log('From inline event handler')">Call inline event handler</button>
+
 
 <!-- Todo 3.3a Create a button with the text "Call addEventListener" -->
-<button>Call addEventListener</button>
+<button onclick="calling()">Call addEventListener</button>
+<script>
+    function calling() {
+        console.log("Call addEventListener")
+    }
+</script>
 
 <!-- Todo 3.4a Create a form that accepts the first name and last name of the user -->
 
@@ -41,11 +49,12 @@
     <div class="grandparent">
         <div class="parent">
             <div class="child">
-                <form>
+                <form id="formContent">
                     <label for="first-name"> First Name </label> <br> 
                     <input type="text" id="first-name"> <br>
                     <label for="last-name"> Last Name </label> <br> 
                     <input type="text" id="last-name">
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
@@ -58,21 +67,61 @@
         // Todo 3.1 When the page has loaded, log "The page has loaded"
         // Relevant Link: https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
 
-        // Todo 3.3b Add an event handler for the button created in 2.3a. The event handler should log "From addEventListener" when the button is clicked
+        window.onload = (event) => {console.log("The page has loaded")}
+
+        // Todo 3.3b Add an event handler for the button created in 2.3a (3.3a***). The event handler should log "From addEventListener" when the button is clicked
         // Relevant Link: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#using_addeventlistener see Using addEventListener() section
+    </script>
+        <button id="call">From addEventListener</button>
+        <script>
 
-        // Checkpoint 3.1 What is the difference between inline event handlers and addEventListener? When should you use one over the other?
-        // Answer: 
+        function calling() {
+            console.log("From addEventListener")
+        }
+        document.getElementById("call").addEventListener('click', calling)
 
-        const results = []
+
+        // Checkpoint 3.1 What is the difference between inline event handlers and addEventListener? When should you use one over the other?        
+        // Answer: Inline Event Handlers: simplicity; for smaller projects when you have a single event and a single handler.
+                //addEventListener: flexibility (more modern approach); more control due to capability of handling many handlers
+                                //useful when dynamically adding or removing event listeners.
+
+        const results = [];
         // Todo 3.3b When the user presses the submit form button, append the contents of the form to results. Then, display the content of results
         // Relevant Link: https://stackoverflow.com/questions/11563638/how-do-i-get-the-value-of-text-input-field-using-javascript
         
+        document.getElementById('formContent').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission behavior
+
+        // Get the values from the form
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+
+        // Append the contents to the results array
+        results.push({ firstName, lastName });
+        //results[results.length] = { firstName, lastName };
+
+        // Display the content of results
+        console.log(firstName);
+        console.log(lastName);
+        console.log('Results:', results);
+        console.log('Last Entry:', results[results.length - 1]);
+    });
         // Todo 3.5 add event listenders for the grandparent, parent, and child divs. When clicked, the grandparent, parent, and child should log "Grandparent", "Parent", and "Child" respectively
         // Relevant Link: https://youtu.be/XF1_MlZ5l6M?si=QrNjKXg-xXV6yghW @ 4:00 of the video
         const grandparent = document.querySelector(".grandparent")
         const parent = document.querySelector(".parent")
         const child = document.querySelector(".child")
+
+        grandparent.addEventListener("click", e =>{
+            console.log("Grandparent")
+        })
+        parent.addEventListener("click", e =>{
+            console.log("Parent")
+        })
+        child.addEventListener("click", e =>{
+            console.log("child")
+        })
 
         // Checkpoint 3.2 What is event bubbling? How was it shown in Todo 3.5?
         // Answer: 
@@ -80,6 +129,21 @@
         // Bonus Todo 3.6 Change your code in the previous todo such that "grandparent" is displayed first
 
         // Bonus Todo 3.7 Change your code in the previous todo such that "parent" is never displayed
+
+        // grandparent.addEventListener("click", e => {
+        // console.log("Grandparent");
+        // });
+
+        // // Change the order of event listener registration to make "grandparent" displayed first
+        // child.addEventListener("click", e => {
+        //     console.log("Child");
+        // });
+
+        // // Bonus Todo 3.7 Change your code to ensure "parent" is never displayed
+        // // Remove the event listener for the "parent" element
+        // parent.addEventListener("click", e => {
+        //     e.stopPropagation(); // Prevent the event from reaching the parent
+        // });
 
     </script>
 </body>
