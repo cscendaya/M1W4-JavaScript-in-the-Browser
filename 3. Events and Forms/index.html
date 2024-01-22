@@ -86,27 +86,20 @@
                 //addEventListener: flexibility (more modern approach); more control due to capability of handling many handlers
                                 //useful when dynamically adding or removing event listeners.
 
-        const results = [];
+        
         // Todo 3.3b When the user presses the submit form button, append the contents of the form to results. Then, display the content of results
         // Relevant Link: https://stackoverflow.com/questions/11563638/how-do-i-get-the-value-of-text-input-field-using-javascript
         
+        const results = [];
         document.getElementById('formContent').addEventListener('submit', function(event) {
         event.preventDefault(); 
 
         const firstName = document.getElementById('first-name').value;
         const lastName = document.getElementById('last-name').value;
-        results.push({ firstName, lastName });
-        //results[results.length] = { firstName, lastName };
-        function displayResults() {
-            para.textContent = "";
-            results.forEach((result, index) => {
-                para.textContent += `Result ${index + 1}: First Name - ${result.firstName}, Last Name - ${result.lastName}\n`;
-            });
-        }
-        console.log(firstName);
-        console.log(lastName);
-        console.log('Results:', results);
-        console.log('Last Entry:', results[results.length - 1]);
+        results.push({ firstName, lastName });     
+        const lastIndex = results.length - 1;
+        console.log('Results:', results[lastIndex].firstName, results[lastIndex].lastName);
+        console.log('Alt Results:', results[results.length - 1]);
     });
         // Todo 3.5 add event listenders for the grandparent, parent, and child divs. When clicked, the grandparent, parent, and child should log "Grandparent", "Parent", and "Child" respectively
         // Relevant Link: https://youtu.be/XF1_MlZ5l6M?si=QrNjKXg-xXV6yghW @ 4:00 of the video
